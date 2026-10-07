@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="es">
+<head>
+<script>(function(){try{var l=localStorage.getItem('mm_lang');if(l==='en'){document.documentElement.classList.add('lang-en');document.documentElement.setAttribute('lang','en');}}catch(e){}})();</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Área de clientes — Marbella Maintenance</title>
+<meta name="description" content="Accede a tu área de cliente para seguir el estado de tus mantenimientos, tu propiedad y tus mensajes con Marbella Maintenance.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260107">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <strong>Marbella Maintenance</strong>
+      <span>Home &amp; Property Care</span>
+    </a>
+    <nav class="main-nav" aria-label="Principal">
+      <a href="index.html" data-nav-link><span class="i18n-es">Inicio</span><span class="i18n-en">Home</span></a>
+      <a href="servicios.html" data-nav-link><span class="i18n-es">Servicios</span><span class="i18n-en">Services</span></a>
+      <a href="premium.html" data-nav-link><span class="i18n-es">Premium</span><span class="i18n-en">Premium</span></a>
+      <a href="como-funciona.html" data-nav-link><span class="i18n-es">Cómo funciona</span><span class="i18n-en">How it works</span></a>
+      <a href="area-clientes.html" data-nav-link><span class="i18n-es">Área clientes</span><span class="i18n-en">Client area</span></a>
+      <a href="contacto.html" data-nav-link><span class="i18n-es">Contacto</span><span class="i18n-en">Contact</span></a>
+    </nav>
+    <div class="nav-cta">
+      <button class="lang-toggle" data-lang-toggle type="button">EN</button>
+      <a href="reservar-cita.html" class="btn btn-gold btn-sm">
+        <span class="i18n-es">Reservar cita</span><span class="i18n-en">Book a visit</span>
+      </a>
+      <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" type="button">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-nav" aria-label="Menú móvil">
+  <a href="index.html"><span class="i18n-es">Inicio</span><span class="i18n-en">Home</span></a>
+  <a href="servicios.html"><span class="i18n-es">Servicios</span><span class="i18n-en">Services</span></a>
+  <a href="premium.html"><span class="i18n-es">Premium</span><span class="i18n-en">Premium</span></a>
+  <a href="como-funciona.html"><span class="i18n-es">Cómo funciona</span><span class="i18n-en">How it works</span></a>
+  <a href="area-clientes.html"><span class="i18n-es">Área clientes</span><span class="i18n-en">Client area</span></a>
+  <a href="contacto.html"><span class="i18n-es">Contacto</span><span class="i18n-en">Contact</span></a>
+  <a href="reservar-cita.html" class="btn btn-gold btn-block"><span class="i18n-es">Reservar cita</span><span class="i18n-en">Book a visit</span></a>
+</nav>
+
+<main id="main">
+
+<section class="page-hero" style="min-height:42vh">
+  <div class="hero-media"><img src="assets/img/team-meeting.jpg" alt="Área de clientes Marbella Maintenance"></div>
+  <div class="container hero-content">
+    <span class="eyebrow"><span class="i18n-es">Área de clientes</span><span class="i18n-en">Client area</span></span>
+    <h1><span class="i18n-es">Tu casa, bajo control, estés donde estés</span><span class="i18n-en">Your home, under control, wherever you are</span></h1>
+  </div>
+</section>
+
+<section class="section-cream">
+  <div class="container" data-client-area>
+
+    <div class="demo-banner reveal">
+      <span>ℹ️</span>
+      <span>
+        <span class="i18n-es"><strong>Entorno de demostración:</strong> crea una cuenta de prueba para ver cómo funciona tu futura área de cliente. Los datos se guardan solo en este navegador, no en un servidor.</span>
+        <span class="i18n-en"><strong>Demo environment:</strong> create a test account to see how your future client area will work. Data is stored only in this browser, not on a server.</span>
+      </span>
+    </div>
+
+    <div class="auth-wrap reveal">
+      <div class="auth-tabs">
+        <button type="button" class="active" data-tab="login"><span class="i18n-es">Iniciar sesión</span><span class="i18n-en">Log in</span></button>
+        <button type="button" data-tab="register"><span class="i18n-es">Crear cuenta</span><span class="i18n-en">Create account</span></button>
+      </div>
+
+      <div class="auth-panel active form-card" data-panel="login">
+        <div class="auth-error" id="login-error"></div>
+        <form id="login-form" novalidate>
+          <div class="field">
+            <label for="l-email">Email *</label>
+            <input id="l-email" name="email" type="email" required autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="l-pass"><span class="i18n-es">Contraseña</span><span class="i18n-en">Password</span> *</label>
+            <input id="l-pass" name="password" type="password" required autocomplete="current-password">
+          </div>
+          <button type="submit" class="btn btn-gold btn-block"><span class="i18n-es">Entrar</span><span class="i18n-en">Log in</span></button>
+        </form>
+      </div>
+
+      <div class="auth-panel form-card" data-panel="register">
+        <div class="auth-error" id="register-error"></div>
+        <form id="register-form" novalidate>
+          <div class="field">
+            <label for="r-name"><span class="i18n-es">Nombre completo</span><span class="i18n-en">Full name</span> *</label>
+            <input id="r-name" name="name" type="text" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="r-email">Email *</label>
+            <input id="r-email" name="email" type="email" required autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="r-address"><span class="i18n-es">Dirección de tu propiedad</span><span class="i18n-en">Your property address</span></label>
+            <input id="r-address" name="address" type="text" placeholder="Marbella, Málaga">
+          </div>
+          <div class="field">
+            <label for="r-pass"><span class="i18n-es">Contraseña</span><span class="i18n-en">Password</span> *</label>
+            <input id="r-pass" name="password" type="password" required autocomplete="new-password">
+          </div>
+          <button type="submit" class="btn btn-gold btn-block"><span class="i18n-es">Crear mi cuenta</span><span class="i18n-en">Create my account</span></button>
+          <p class="form-note"><span class="i18n-es">Se crearán 5 mantenimientos de ejemplo en tu cuenta para que veas cómo funciona el seguimiento.</span><span class="i18n-en">5 sample maintenance records will be created in your account so you can see how tracking works.</span></p>
+        </form>
+      </div>
+    </div>
+
+    <div class="dash">
+      <div class="dash-head">
+        <div class="dash-welcome">
+          <span class="kicker"><span class="i18n-es">Bienvenido/a de nuevo</span><span class="i18n-en">Welcome back</span></span>
+          <strong data-welcome-name>—</strong>
+        </div>
+        <button type="button" class="btn btn-ghost-light btn-sm" data-logout><span class="i18n-es">Cerrar sesión</span><span class="i18n-en">Log out</span></button>
+      </div>
+
+      <div class="dash-tabs">
+        <button type="button" class="active" data-dash-tab="mantenimientos"><span class="i18n-es">Mis mantenimientos</span><span class="i18n-en">My maintenance</span></button>
+        <button type="button" data-dash-tab="propiedad"><span class="i18n-es">Mi propiedad</span><span class="i18n-en">My property</span></button>
+        <button type="button" data-dash-tab="mensajes"><span class="i18n-es">Mensajes</span><span class="i18n-en">Messages</span></button>
+      </div>
+
+      <div class="dash-panel active" data-dash-panel="mantenimientos">
+        <div class="record-list" data-record-list></div>
+      </div>
+
+      <div class="dash-panel" data-dash-panel="propiedad">
+        <div class="profile-grid" data-profile-grid></div>
+      </div>
+
+      <div class="dash-panel" data-dash-panel="mensajes">
+        <div class="msg-list" data-msg-list></div>
+        <div class="form-card" style="padding:26px">
+          <form id="message-form">
+            <div class="field full">
+              <label for="m-text"><span class="i18n-es">Escribe un mensaje a tu equipo de mantenimiento</span><span class="i18n-en">Write a message to your maintenance team</span></label>
+              <textarea id="m-text" name="text" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-dark btn-sm"><span class="i18n-es">Enviar mensaje</span><span class="i18n-en">Send message</span></button>
+            <span data-msg-ack class="form-note" style="opacity:0;transition:opacity .3s" data-ack-text><span class="i18n-es">¡Mensaje enviado!</span><span class="i18n-en">Message sent!</span></span>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <strong style="font-family:'Fraunces',serif;color:#fff;font-size:1.3rem">Marbella Maintenance</strong>
+        <p><span class="i18n-es">Cuidamos tu casa en Marbella como si fuera la nuestra: mantenimiento, reformas y servicios premium para que tú no tengas que pensar en nada.</span><span class="i18n-en">We look after your Marbella home as if it were our own: maintenance, renovations and premium services, so you don't have to think about a thing.</span></p>
+        <div class="social-row">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M13.5 22v-8.5H16l.5-3.5h-3V7.7c0-1 .3-1.7 1.8-1.7H16V2.8C15.6 2.7 14.6 2.6 13.5 2.6c-2.5 0-4.2 1.5-4.2 4.3v2.1H6.8v3.5h2.5V22h4.2z"/></svg></a>
+          <a href="https://wa.me/34600000000" aria-label="WhatsApp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.74.46 3.43 1.33 4.92L2 22l5.3-1.39a9.87 9.87 0 0 0 4.74 1.2h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4><span class="i18n-es">Servicios</span><span class="i18n-en">Services</span></h4>
+        <ul>
+          <li><a href="servicios.html#reformas"><span class="i18n-es">Reformas</span><span class="i18n-en">Renovations</span></a></li>
+          <li><a href="servicios.html#piscinas"><span class="i18n-es">Piscinas</span><span class="i18n-en">Pools</span></a></li>
+          <li><a href="servicios.html#jardines"><span class="i18n-es">Jardines</span><span class="i18n-en">Gardens</span></a></li>
+          <li><a href="servicios.html#comunidades"><span class="i18n-es">Comunidades</span><span class="i18n-en">Communities</span></a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Premium</h4>
+        <ul>
+          <li><a href="premium.html#aeropuerto"><span class="i18n-es">Traslados aeropuerto</span><span class="i18n-en">Airport transfers</span></a></li>
+          <li><a href="premium.html#catering"><span class="i18n-es">Catering privado</span><span class="i18n-en">Private catering</span></a></li>
+          <li><a href="premium.html#conserjeria"><span class="i18n-es">Conserjería 24/7</span><span class="i18n-en">24/7 concierge</span></a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4><span class="i18n-es">Empresa</span><span class="i18n-en">Company</span></h4>
+        <ul>
+          <li><a href="como-funciona.html"><span class="i18n-es">Cómo funciona</span><span class="i18n-en">How it works</span></a></li>
+          <li><a href="area-clientes.html"><span class="i18n-es">Área clientes</span><span class="i18n-en">Client area</span></a></li>
+          <li><a href="reservar-cita.html"><span class="i18n-es">Reservar cita</span><span class="i18n-en">Book a visit</span></a></li>
+          <li><a href="contacto.html"><span class="i18n-es">Contacto</span><span class="i18n-en">Contact</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> Marbella Maintenance. <span class="i18n-es">Todos los derechos reservados.</span><span class="i18n-en">All rights reserved.</span></span>
+      <span><span class="i18n-es">Fotografías de</span><span class="i18n-en">Photography by</span> Unsplash</span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/34600000000" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="#fff" width="26" height="26"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.74.46 3.43 1.33 4.92L2 22l5.3-1.39a9.87 9.87 0 0 0 4.74 1.2h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2z"/></svg>
+</a>
+
+<script defer src="assets/js/main.js?v=20260107"></script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="es">
+<head>
+<script>(function(){try{var l=localStorage.getItem('mm_lang');if(l==='en'){document.documentElement.classList.add('lang-en');document.documentElement.setAttribute('lang','en');}}catch(e){}})();</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reservar cita — Marbella Maintenance</title>
+<meta name="description" content="Agenda una visita gratuita a tu propiedad en Marbella y recibe un presupuesto real para los servicios que necesites.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260107">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <strong>Marbella Maintenance</strong>
+      <span>Home &amp; Property Care</span>
+    </a>
+    <nav class="main-nav" aria-label="Principal">
+      <a href="index.html" data-nav-link><span class="i18n-es">Inicio</span><span class="i18n-en">Home</span></a>
+      <a href="servicios.html" data-nav-link><span class="i18n-es">Servicios</span><span class="i18n-en">Services</span></a>
+      <a href="premium.html" data-nav-link><span class="i18n-es">Premium</span><span class="i18n-en">Premium</span></a>
+      <a href="como-funciona.html" data-nav-link><span class="i18n-es">Cómo funciona</span><span class="i18n-en">How it works</span></a>
+      <a href="area-clientes.html" data-nav-link><span class="i18n-es">Área clientes</span><span class="i18n-en">Client area</span></a>
+      <a href="contacto.html" data-nav-link><span class="i18n-es">Contacto</span><span class="i18n-en">Contact</span></a>
+    </nav>
+    <div class="nav-cta">
+      <button class="lang-toggle" data-lang-toggle type="button">EN</button>
+      <a href="reservar-cita.html" class="btn btn-gold btn-sm">
+        <span class="i18n-es">Reservar cita</span><span class="i18n-en">Book a visit</span>
+      </a>
+      <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" type="button">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-nav" aria-label="Menú móvil">
+  <a href="index.html"><span class="i18n-es">Inicio</span><span class="i18n-en">Home</span></a>
+  <a href="servicios.html"><span class="i18n-es">Servicios</span><span class="i18n-en">Services</span></a>
+  <a href="premium.html"><span class="i18n-es">Premium</span><span class="i18n-en">Premium</span></a>
+  <a href="como-funciona.html"><span class="i18n-es">Cómo funciona</span><span class="i18n-en">How it works</span></a>
+  <a href="area-clientes.html"><span class="i18n-es">Área clientes</span><span class="i18n-en">Client area</span></a>
+  <a href="contacto.html"><span class="i18n-es">Contacto</span><span class="i18n-en">Contact</span></a>
+  <a href="reservar-cita.html" class="btn btn-gold btn-block"><span class="i18n-es">Reservar cita</span><span class="i18n-en">Book a visit</span></a>
+</nav>
+
+<main id="main">
+
+<section class="page-hero" style="min-height:48vh">
+  <div class="hero-media"><img src="assets/img/coastline.jpg" alt="Costa de Marbella"></div>
+  <div class="container hero-content">
+    <span class="eyebrow"><span class="i18n-es">Reservar cita</span><span class="i18n-en">Book a visit</span></span>
+    <h1><span class="i18n-es">Agenda una visita gratuita a tu propiedad</span><span class="i18n-en">Schedule a free visit to your property</span></h1>
+    <p class="hero-sub"><span class="i18n-es">Cuéntanos sobre tu casa y qué necesitas. Un técnico la visitará en persona y te daremos un presupuesto real.</span><span class="i18n-en">Tell us about your home and what you need. A technician will visit in person and we'll give you a real quote.</span></p>
+  </div>
+</section>
+
+<section class="section-cream">
+  <div class="container">
+    <div class="booking-layout">
+
+      <div class="form-card reveal">
+        <form id="booking-form" data-smart-form="mm_booking_requests" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="b-name"><span class="i18n-es">Nombre completo</span><span class="i18n-en">Full name</span> *</label>
+              <input id="b-name" name="name" type="text" required autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="b-email">Email *</label>
+              <input id="b-email" name="email" type="email" required autocomplete="email">
+            </div>
+            <div class="field">
+              <label for="b-phone"><span class="i18n-es">Teléfono</span><span class="i18n-en">Phone</span> *</label>
+              <input id="b-phone" name="phone" type="tel" required autocomplete="tel" placeholder="+34 6xx xxx xxx">
+            </div>
+            <div class="field">
+              <label for="b-address"><span class="i18n-es">Dirección / urbanización</span><span class="i18n-en">Address / development</span></label>
+              <input id="b-address" name="address" type="text" placeholder="Marbella, Málaga">
+            </div>
+          </div>
+
+          <div class="field full">
+            <label><span class="i18n-es">Servicios que te interesan</span><span class="i18n-en">Services you're interested in</span></label>
+            <div class="checkbox-grid">
+              <label class="checkbox-item"><input type="checkbox" name="services" value="reformas"><span class="i18n-es">Reformas</span><span class="i18n-en">Renovations</span></label>
+              <label class="checkbox-item"><input type="checkbox" name="services" value="piscinas"><span class="i18n-es">Piscinas</span><span class="i18n-en">Pools</span></label>
+              <label class="checkbox-item"><input type="checkbox" name="services" value="jardines"><span class="i18n-es">Jardines</span><span class="i18n-en">Gardens</span></label>
+              <label class="checkbox-item"><input type="checkbox" name="services" value="comunidades"><span class="i18n-es">Comunidades</span><span class="i18n-en">Communities</span></label>
+              <label class="checkbox-item"><input type="checkbox" name="services" value="premium"><span class="i18n-es">Servicios premium</span><span class="i18n-en">Premium services</span></label>
+              <label class="checkbox-item"><input type="checkbox" name="services" value="otro"><span class="i18n-es">Otro / no estoy seguro</span><span class="i18n-en">Other / not sure</span></label>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="b-date"><span class="i18n-es">Fecha preferida</span><span class="i18n-en">Preferred date</span></label>
+              <input id="b-date" name="date" type="date">
+            </div>
+            <div class="field">
+              <label for="b-time"><span class="i18n-es">Franja horaria</span><span class="i18n-en">Time slot</span></label>
+              <select id="b-time" name="time">
+                <option value="manana" data-en="Morning">Mañana</option>
+                <option value="tarde" data-en="Afternoon">Tarde</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field full">
+            <label for="b-msg"><span class="i18n-es">Cuéntanos sobre tu propiedad</span><span class="i18n-en">Tell us about your property</span> <span class="hint i18n-es">(opcional)</span><span class="hint i18n-en">(optional)</span></label>
+            <textarea id="b-msg" name="message" placeholder=""></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-gold btn-block">
+            <span class="i18n-es">Enviar solicitud de cita</span><span class="i18n-en">Send booking request</span>
+          </button>
+          <p class="form-note"><span class="i18n-es">Al enviar aceptas que te contactemos sobre tu solicitud. No compartimos tus datos con terceros.</span><span class="i18n-en">By submitting you agree we may contact you about your request. We never share your data with third parties.</span></p>
+        </form>
+
+        <div class="form-success" data-form-success>
+          <div class="icon-ok">✓</div>
+          <h3><span class="i18n-es">¡Solicitud enviada!</span><span class="i18n-en">Request sent!</span></h3>
+          <p><span class="i18n-es">Gracias. Te contactaremos en menos de 24 horas para confirmar la visita.</span><span class="i18n-en">Thank you. We'll contact you within 24 hours to confirm the visit.</span></p>
+          <p class="form-note">
+            <span class="i18n-es">¿Prefieres hablar ya? </span><span class="i18n-en">Prefer to talk now? </span>
+            <a href="#" data-mail-fallback style="text-decoration:underline"><span class="i18n-es">Escríbenos por email</span><span class="i18n-en">Email us</span></a>
+            <span class="i18n-es"> o por </span><span class="i18n-en"> or on </span>
+            <a href="https://wa.me/34600000000" target="_blank" rel="noopener" style="text-decoration:underline">WhatsApp</a>.
+          </p>
+        </div>
+      </div>
+
+      <aside class="booking-side">
+        <div class="side-card reveal">
+          <h4><span class="i18n-es">Qué incluye la visita</span><span class="i18n-en">What the visit includes</span></h4>
+          <ul>
+            <li>✓ <span><span class="i18n-es">Evaluación completa de la propiedad</span><span class="i18n-en">Full assessment of the property</span></span></li>
+            <li>✓ <span><span class="i18n-es">Recomendación de servicios necesarios</span><span class="i18n-en">Recommendation of services needed</span></span></li>
+            <li>✓ <span><span class="i18n-es">Presupuesto cerrado en 48–72h</span><span class="i18n-en">Fixed quote within 48–72h</span></span></li>
+            <li>✓ <span><span class="i18n-es">Sin compromiso de contratación</span><span class="i18n-en">No obligation to hire</span></span></li>
+          </ul>
+        </div>
+        <a class="contact-chip reveal" href="tel:+34951234567">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+          <span><strong>+34 951 234 567</strong><span><span class="i18n-es">Lun–Sáb, 9:00–19:00</span><span class="i18n-en">Mon–Sat, 9am–7pm</span></span></span>
+        </a>
+        <a class="contact-chip reveal" href="https://wa.me/34600000000" target="_blank" rel="noopener">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.74.46 3.43 1.33 4.92L2 22l5.3-1.39a9.87 9.87 0 0 0 4.74 1.2h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2z"/></svg></span>
+          <span><strong>WhatsApp</strong><span><span class="i18n-es">Respuesta rápida</span><span class="i18n-en">Quick response</span></span></span>
+        </a>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <strong style="font-family:'Fraunces',serif;color:#fff;font-size:1.3rem">Marbella Maintenance</strong>
+        <p><span class="i18n-es">Cuidamos tu casa en Marbella como si fuera la nuestra: mantenimiento, reformas y servicios premium para que tú no tengas que pensar en nada.</span><span class="i18n-en">We look after your Marbella home as if it were our own: maintenance, renovations and premium services, so you don't have to think about a thing.</span></p>
+        <div class="social-row">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M13.5 22v-8.5H16l.5-3.5h-3V7.7c0-1 .3-1.7 1.8-1.7H16V2.8C15.6 2.7 14.6 2.6 13.5 2.6c-2.5 0-4.2 1.5-4.2 4.3v2.1H6.8v3.5h2.5V22h4.2z"/></svg></a>
+          <a href="https://wa.me/34600000000" aria-label="WhatsApp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.74.46 3.43 1.33 4.92L2 22l5.3-1.39a9.87 9.87 0 0 0 4.74 1.2h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4><span class="i18n-es">Servicios</span><span class="i18n-en">Services</span></h4>
+        <ul>
+          <li><a href="servicios.html#reformas"><span class="i18n-es">Reformas</span><span class="i18n-en">Renovations</span></a></li>
+          <li><a href="servicios.html#piscinas"><span class="i18n-es">Piscinas</span><span class="i18n-en">Pools</span></a></li>
+          <li><a href="servicios.html#jardines"><span class="i18n-es">Jardines</span><span class="i18n-en">Gardens</span></a></li>
+          <li><a href="servicios.html#comunidades"><span class="i18n-es">Comunidades</span><span class="i18n-en">Communities</span></a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Premium</h4>
+        <ul>
+          <li><a href="premium.html#aeropuerto"><span class="i18n-es">Traslados aeropuerto</span><span class="i18n-en">Airport transfers</span></a></li>
+          <li><a href="premium.html#catering"><span class="i18n-es">Catering privado</span><span class="i18n-en">Private catering</span></a></li>
+          <li><a href="premium.html#conserjeria"><span class="i18n-es">Conserjería 24/7</span><span class="i18n-en">24/7 concierge</span></a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4><span class="i18n-es">Empresa</span><span class="i18n-en">Company</span></h4>
+        <ul>
+          <li><a href="como-funciona.html"><span class="i18n-es">Cómo funciona</span><span class="i18n-en">How it works</span></a></li>
+          <li><a href="area-clientes.html"><span class="i18n-es">Área clientes</span><span class="i18n-en">Client area</span></a></li>
+          <li><a href="reservar-cita.html"><span class="i18n-es">Reservar cita</span><span class="i18n-en">Book a visit</span></a></li>
+          <li><a href="contacto.html"><span class="i18n-es">Contacto</span><span class="i18n-en">Contact</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> Marbella Maintenance. <span class="i18n-es">Todos los derechos reservados.</span><span class="i18n-en">All rights reserved.</span></span>
+      <span><span class="i18n-es">Fotografías de</span><span class="i18n-en">Photography by</span> Unsplash</span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/34600000000" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="#fff" width="26" height="26"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.74.46 3.43 1.33 4.92L2 22l5.3-1.39a9.87 9.87 0 0 0 4.74 1.2h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2z"/></svg>
+</a>
+
+<script defer src="assets/js/main.js?v=20260107"></script>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="es">
+<head>
+<script>(function(){try{var l=localStorage.getItem('mm_lang');if(l==='en'){document.documentElement.classList.add('lang-en');document.documentElement.setAttribute('lang','en');}}catch(e){}})();</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cómo funciona — Marbella Maintenance</title>
+<meta name="description" content="Así es el proceso desde que reservas una visita hasta que recibes un presupuesto real para tu propiedad en Marbella.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260107">
+<style>
+  .faq{border-bottom:1px solid var(--line-light);padding:22px 0}
+  .faq summary{cursor:pointer;font-weight:600;font-size:1.02rem;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:'+';font-family:'Fraunces',serif;font-size:1.4rem;color:var(--terracotta)}
+  .faq[open] summary::after{content:'−'}
+  .faq p{margin-top:14px;max-width:70ch}
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  @media (max-width:900px){.why-grid{grid-template-columns:1fr}}
+  .why-card{background:var(--paper);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow-soft)}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <strong>Marbella Maintenance</strong>
+      <span>Home &amp; Property Care</span>
+    </a>
+    <nav class="main-nav" aria-label="Principal">
+      <a href="index.html" data-nav-link><span class="i18n-es">Inicio</span><span class="i18n-en">Home</span></a>
+      <a href="servicios.html" data-nav-link><span class="i18n-es">Servicios</span><span class="i18n-en">Services</span></a>
+      <a href="premium.html" data-nav-link><span class="i18n-es">Premium</span><span class="i18n-en">Premium</span></a>
+      <a href="como-funciona.html" data-nav-link><span class="i18n-es">Cómo funciona</span><span class="i18n-en">How it works</span></a>
+      <a href="area-clientes.html" data-nav-link><span class="i18n-es">Área clientes</span><span class="i18n-en">Client area</span></a>
+      <a href="contacto.html" data-nav-link><span class="i18n-es">Contacto</span><span class="i18n-en">Contact</span></a>
+    </nav>
+    <div class="nav-cta">
+      <button class="lang-toggle" data-lang-toggle type="button">EN</button>
+      <a href="reservar-cita.html" class="btn btn-gold btn-sm">
+        <span class="i18n-es">Reservar cita</span><span class="i18n-en">Book a visit</span>
+      </a>
+      <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" type="button">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-nav" aria-label="Menú móvil">
+  <a href="index.html"><span class="i18n-es">Inicio</span><span class="i18n-en">Home</span></a>
+  <a href="servicios.html"><span class="i18n-es">Servicios</span><span class="i18n-en">Services</span></a>
+  <a href="premium.html"><span class="i18n-es">Premium</span><span class="i18n-en">Premium</span></a>
+  <a href="como-funciona.html"><span class="i18n-es">Cómo funciona</span><span class="i18n-en">How it works</span></a>
+  <a href="area-clientes.html"><span class="i18n-es">Área clientes</span><span class="i18n-en">Client area</span></a>
+  <a href="contacto.html"><span class="i18n-es">Contacto</span><span class="i18n-en">Contact</span></a>
+  <a href="reservar-cita.html" class="btn btn-gold btn-block"><span class="i18n-es">Reservar cita</span><span class="i18n-en">Book a visit</span></a>
+</nav>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="hero-media"><img src="assets/img/team-meeting.jpg" alt="Equipo de Marbella Maintenance evaluando una propiedad"></div>
+  <div class="container hero-content">
+    <span class="eyebrow"><span class="i18n-es">Cómo funciona</span><span class="i18n-en">How it works</span></span>
+    <h1><span class="i18n-es">Sin sorpresas: vemos tu casa antes de darte un precio</span><span class="i18n-en">No surprises: we see your home before giving you a price</span></h1>
+    <p class="hero-sub"><span class="i18n-es">Creemos que un presupuesto serio solo puede salir de una visita en persona. Así es nuestro proceso, paso a paso.</span><span class="i18n-en">We believe a serious quote can only come from an in-person visit. Here is our process, step by step.</span></p>
+  </div>
+</section>
+
+<section class="section-cream">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="kicker"><span class="i18n-es">El proceso</span><span class="i18n-en">The process</span></span>
+      <h2><span class="i18n-es">De la solicitud al mantenimiento continuo</span><span class="i18n-en">From request to ongoing maintenance</span></h2>
+    </div>
+    <div class="timeline reveal">
+      <div class="timeline-step">
+        <div class="num">01</div>
+        <h3><span class="i18n-es">Solicitas una cita</span><span class="i18n-en">You request a visit</span></h3>
+        <p><span class="i18n-es">Rellenas el formulario con tu propiedad, los servicios que te interesan y tu disponibilidad.</span><span class="i18n-en">Fill in the form with your property, the services you're interested in and your availability.</span></p>
+      </div>
+      <div class="timeline-step">
+        <div class="num">02</div>
+        <h3><span class="i18n-es">Confirmamos horario</span><span class="i18n-en">We confirm a time</span></h3>
+        <p><span class="i18n-es">Te contactamos en menos de 24h para fijar el día y la hora de la visita.</span><span class="i18n-en">We contact you within 24h to fix the day and time of the visit.</span></p>
+      </div>
+      <div class="timeline-step">
+        <div class="num">03</div>
+        <h3><span class="i18n-es">Visitamos la propiedad</span><span class="i18n-en">We visit the property</span></h3>
+        <p><span class="i18n-es">Un técnico recorre la casa con calma: piscina, jardín, instalaciones y cualquier reforma que necesites.</span><span class="i18n-en">A technician walks the property thoroughly: pool, garden, systems and any renovation you need.</span></p>
+      </div>
+      <div class="timeline-step">
+        <div class="num">04</div>
+        <h3><span class="i18n-es">Recibes el presupuesto</span><span class="i18n-en">You receive the quote</span></h3>
+        <p><span class="i18n-es">En un plazo de 48–72h te enviamos un presupuesto real y cerrado, servicio por servicio.</span><span class="i18n-en">Within 48–72h we send a real, fixed quote, service by service.</span></p>
+      </div>
+      <div class="timeline-step">
+        <div class="num">05</div>
+        <h3><span class="i18n-es">Empezamos y hacemos seguimiento</span><span class="i18n-en">We start and follow up</span></h3>
+        <p><span class="i18n-es">Aceptas el presupuesto, programamos el trabajo y todo queda registrado en tu área de cliente.</span><span class="i18n-en">You accept the quote, we schedule the work and everything is logged in your client area.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-sand">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="kicker"><span class="i18n-es">Por qué visitamos en persona</span><span class="i18n-en">Why we visit in person</span></span>
+      <h2><span class="i18n-es">Un presupuesto real empieza por mirar la casa de verdad</span><span class="i18n-en">A real quote starts by actually looking at the house</span></h2>
+    </div>
+    <div class="why-grid reveal">
+      <div class="why-card">
+        <div class="divider-icon">👁</div>
+        <h3><span class="i18n-es">Nada se queda fuera</span><span class="i18n-en">Nothing gets missed</span></h3>
+        <p><span class="i18n-es">Una foto no muestra el estado real de una bomba de piscina o una instalación eléctrica. Lo vemos con nuestros propios ojos.</span><span class="i18n-en">A photo doesn't show the real condition of a pool pump or an electrical installation. We see it with our own eyes.</span></p>
+      </div>
+      <div class="why-card">
+        <div class="divider-icon">💶</div>
+        <h3><span class="i18n-es">Precio cerrado, no una estimación</span><span class="i18n-en">A fixed price, not an estimate</span></h3>
+        <p><span class="i18n-es">Al ver la propiedad podemos comprometernos a un precio real, no a un rango que luego cambia.</span><span class="i18n-en">By seeing the property we can commit to a real price, not a range that changes later.</span></p>
+      </div>
+      <div class="why-card">
+        <div class="divider-icon">🤝</div>
+        <h3><span class="i18n-es">Conocemos tu casa desde el primer día</span><span class="i18n-en">We know your home from day one</span></h3>
+        <p><span class="i18n-es">La visita inicial nos sirve para entender tu propiedad y anticiparnos a futuros mantenimientos.</span><span class="i18n-en">The initial visit helps us understand your property and anticipate future maintenance needs.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-cream">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">FAQ</span>
+      <h2><span class="i18n-es">Preguntas frecuentes</span><span class="i18n-en">Frequently asked questions</span></h2>
+    </div>
+    <div class="reveal" style="max-width:760px">
+      <details class="faq" open>
+        <summary><span class="i18n-es">¿La visita inicial tiene algún coste?</span><span class="i18n-en">Does the initial visit have any cost?</span></summary>
+        <p><span class="i18n-es">No. La primera visita para evaluar tu propiedad y preparar un presupuesto es siempre gratuita.</span><span class="i18n-en">No. The first visit to assess your property and prepare a quote is always free.</span></p>
+      </details>
+      <details class="faq">
+        <summary><span class="i18n-es">¿Puedo contratar solo un servicio, como la piscina?</span><span class="i18n-en">Can I hire just one service, like the pool?</span></summary>
+        <p><span class="i18n-es">Sí. Puedes contratar un único servicio o combinar varios — tú decides qué necesita tu casa.</span><span class="i18n-en">Yes. You can hire a single service or combine several — you decide what your home needs.</span></p>
+      </details>
+      <details class="faq">
+        <summary><span class="i18n-es">¿Qué pasa si no estoy en Marbella durante la visita?</span><span class="i18n-en">What if I'm not in Marbella during the visit?</span></summary>
+        <p><span class="i18n-es">No hay problema: coordinamos el acceso a la propiedad y te enviamos fotos y un informe tras la visita.</span><span class="i18n-en">No problem: we arrange access to the property and send you photos and a report after the visit.</span></p>
+      </details>
+      <details class="faq">
+        <summary><span class="i18n-es">¿Cómo veo el estado de mis mantenimientos?</span><span class="i18n-en">How do I see the status of my maintenance visits?</span></summary>
+        <p><span class="i18n-es">Desde tu área de cliente puedes consultar cada visita, su estado y las notas del técnico en cualquier momento.</span><span class="i18n-en">From your client area you can check every visit, its status and the technician's notes at any time.</span></p>
+      </details>
+      <details class="faq">
+        <summary><span class="i18n-es">¿Trabajáis con comunidades de propietarios?</span><span class="i18n-en">Do you work with homeowners' associations?</span></summary>
+        <p><span class="i18n-es">Sí, gestionamos zonas comunes, piscinas compartidas y jardines para comunidades y urbanizaciones privadas.</span><span class="i18n-en">Yes, we manage common areas, shared pools and gardens for communities and private developments.</span></p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section-dark">
+  <div class="container">
+    <div class="cta-band reveal">
+      <div>
+        <h2><span class="i18n-es">Reserva tu visita gratuita hoy</span><span class="i18n-en">Book your free visit today</span></h2>
+        <p><span class="i18n-es">En menos de una semana tendrás un presupuesto real sobre la mesa.</span><span class="i18n-en">Within a week you'll have a real quote on the table.</span></p>
+      </div>
+      <a href="reservar-cita.html" class="btn btn-dark"><span class="i18n-es">Reservar cita</span><span class="i18n-en">Book a visit</span> →</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <strong style="font-family:'Fraunces',serif;color:#fff;font-size:1.3rem">Marbella Maintenance</strong>
+        <p><span class="i18n-es">Cuidamos tu casa en Marbella como si fuera la nuestra: mantenimiento, reformas y servicios premium para que tú no tengas que pensar en nada.</span><span class="i18n-en">We look after your Marbella home as if it were our own: maintenance, renovations and premium services, so you don't have to think about a thing.</span></p>
+        <div class="social-row">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M13.5 22v-8.5H16l.5-3.5h-3V7.7c0-1 .3-1.7 1.8-1.7H16V2.8C15.6 2.7 14.6 2.6 13.5 2.6c-2.5 0-4.2 1.5-4.2 4.3v2.1H6.8v3.5h2.5V22h4.2z"/></svg></a>
+          <a href="https://wa.me/34600000000" aria-label="WhatsApp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.74.46 3.43 1.33 4.92L2 22l5.3-1.39a9.87 9.87 0 0 0 4.74 1.2h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4><span class="i18n-es">Servicios</span><span class="i18n-en">Services</span></h4>
+        <ul>
+          <li><a href="servicios.html#reformas"><span class="i18n-es">Reformas</span><span class="i18n-en">Renovations</span></a></li>
+          <li><a href="servicios.html#piscinas"><span class="i18n-es">Piscinas</span><span class="i18n-en">Pools</span></a></li>
+          <li><a href="servicios.html#jardines"><span class="i18n-es">Jardines</span><span class="i18n-en">Gardens</span></a></li>
+          <li><a href="servicios.html#comunidades"><span class="i18n-es">Comunidades</span><span class="i18n-en">Communities</span></a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Premium</h4>
+        <ul>
+          <li><a href="premium.html#aeropuerto"><span class="i18n-es">Traslados aeropuerto</span><span class="i18n-en">Airport transfers</span></a></li>
+          <li><a href="premium.html#catering"><span class="i18n-es">Catering privado</span><span class="i18n-en">Private catering</span></a></li>
+          <li><a href="premium.html#conserjeria"><span class="i18n-es">Conserjería 24/7</span><span class="i18n-en">24/7 concierge</span></a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4><span class="i18n-es">Empresa</span><span class="i18n-en">Company</span></h4>
+        <ul>
+          <li><a href="como-funciona.html"><span class="i18n-es">Cómo funciona</span><span class="i18n-en">How it works</span></a></li>
+          <li><a href="area-clientes.html"><span class="i18n-es">Área clientes</span><span class="i18n-en">Client area</span></a></li>
+          <li><a href="reservar-cita.html"><span class="i18n-es">Reservar cita</span><span class="i18n-en">Book a visit</span></a></li>
+          <li><a href="contacto.html"><span class="i18n-es">Contacto</span><span class="i18n-en">Contact</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> Marbella Maintenance. <span class="i18n-es">Todos los derechos reservados.</span><span class="i18n-en">All rights reserved.</span></span>
+      <span><span class="i18n-es">Fotografías de</span><span class="i18n-en">Photography by</span> Unsplash</span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/34600000000" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="#fff" width="26" height="26"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.74.46 3.43 1.33 4.92L2 22l5.3-1.39a9.87 9.87 0 0 0 4.74 1.2h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2z"/></svg>
+</a>
+
+<script defer src="assets/js/main.js?v=20260107"></script>
+</body>
+</html>
