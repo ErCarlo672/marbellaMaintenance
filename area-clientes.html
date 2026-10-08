@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,500&family=Pinyon+Script&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css?v=20260110">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260111">
 </head>
 <body>
 
@@ -69,10 +69,10 @@
   <div class="container" data-client-area>
 
     <div class="demo-banner reveal">
-      <span>ℹ️</span>
+      <span>🔒</span>
       <span>
-        <span class="i18n-es"><strong>Entorno de demostración:</strong> crea una cuenta de prueba para ver cómo funciona tu futura área de cliente. Los datos se guardan solo en este navegador, no en un servidor.</span>
-        <span class="i18n-en"><strong>Demo environment:</strong> create a test account to see how your future client area will work. Data is stored only in this browser, not on a server.</span>
+        <span class="i18n-es"><strong>Datos protegidos:</strong> tu cuenta y tus mantenimientos se guardan de forma segura y solo tú puedes verlos.</span>
+        <span class="i18n-en"><strong>Protected data:</strong> your account and maintenance history are stored securely and only you can see them.</span>
       </span>
     </div>
 
@@ -117,9 +117,15 @@
             <input id="r-pass" name="password" type="password" required autocomplete="new-password">
           </div>
           <button type="submit" class="btn btn-gold btn-block"><span class="i18n-es">Crear mi cuenta</span><span class="i18n-en">Create my account</span></button>
-          <p class="form-note"><span class="i18n-es">Se crearán 5 mantenimientos de ejemplo en tu cuenta para que veas cómo funciona el seguimiento.</span><span class="i18n-en">5 sample maintenance records will be created in your account so you can see how tracking works.</span></p>
+          <p class="form-note"><span class="i18n-es">Tu equipo de mantenimiento irá añadiendo aquí cada visita a tu propiedad.</span><span class="i18n-en">Your maintenance team will add each visit to your property here.</span></p>
         </form>
       </div>
+    </div>
+
+    <div class="form-success" data-register-pending>
+      <div class="icon-ok">✉️</div>
+      <h3><span class="i18n-es">Confirma tu email</span><span class="i18n-en">Confirm your email</span></h3>
+      <p><span class="i18n-es">Te hemos enviado un enlace de confirmación. Ábrelo y después vuelve aquí para iniciar sesión.</span><span class="i18n-en">We've sent you a confirmation link. Open it, then come back here to log in.</span></p>
     </div>
 
     <div class="dash">
@@ -226,6 +232,8 @@
   <svg viewBox="0 0 24 24" fill="#fff" width="26" height="26"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.74.46 3.43 1.33 4.92L2 22l5.3-1.39a9.87 9.87 0 0 0 4.74 1.2h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2z"/></svg>
 </a>
 
-<script defer src="assets/js/main.js?v=20260110"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script defer src="assets/js/supabase-client.js?v=20260111"></script>
+<script defer src="assets/js/main.js?v=20260111"></script>
 </body>
 </html>

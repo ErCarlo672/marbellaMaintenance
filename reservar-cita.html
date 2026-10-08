@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,500&family=Pinyon+Script&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css?v=20260110">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260111">
 </head>
 <body>
 
@@ -71,7 +71,7 @@
     <div class="booking-layout">
 
       <div class="form-card reveal">
-        <form id="booking-form" data-smart-form="mm_booking_requests" novalidate>
+        <form id="booking-form" data-smart-form="booking_requests" novalidate>
           <div class="form-grid">
             <div class="field">
               <label for="b-name"><span class="i18n-es">Nombre completo</span><span class="i18n-en">Full name</span> *</label>
@@ -127,6 +127,11 @@
           </button>
           <p class="form-note"><span class="i18n-es">Al enviar aceptas que te contactemos sobre tu solicitud. No compartimos tus datos con terceros.</span><span class="i18n-en">By submitting you agree we may contact you about your request. We never share your data with third parties.</span></p>
         </form>
+
+        <div class="auth-error" data-form-error>
+          <span class="i18n-es">Ha ocurrido un error al enviar la solicitud. Inténtalo de nuevo o escríbenos por WhatsApp.</span>
+          <span class="i18n-en">Something went wrong sending your request. Please try again or message us on WhatsApp.</span>
+        </div>
 
         <div class="form-success" data-form-success>
           <div class="icon-ok">✓</div>
@@ -228,6 +233,8 @@
   <svg viewBox="0 0 24 24" fill="#fff" width="26" height="26"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.74.46 3.43 1.33 4.92L2 22l5.3-1.39a9.87 9.87 0 0 0 4.74 1.2h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2z"/></svg>
 </a>
 
-<script defer src="assets/js/main.js?v=20260110"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script defer src="assets/js/supabase-client.js?v=20260111"></script>
+<script defer src="assets/js/main.js?v=20260111"></script>
 </body>
 </html>

@@ -142,8 +142,8 @@
   }
 
   /* ---------------------------------------------------------------------
-     Generic "fake submit" forms (booking + contact): validate, store
-     locally, show success panel + build a mailto fallback.
+     Smart forms (booking + contact): validate, insert into Supabase,
+     show success panel + build a mailto fallback.
   --------------------------------------------------------------------- */
   function serializeForm(form) {
     var data = {};
@@ -161,21 +161,17 @@
     return data;
   }
 
-  function storeSubmission(bucket, payload) {
-    try {
-      var raw = localStorage.getItem(bucket);
-      var list = raw ? JSON.parse(raw) : [];
-      payload._at = new Date().toISOString();
-      list.push(payload);
-      localStorage.setItem(bucket, JSON.stringify(list));
-    } catch (e) {}
-  }
+  var FORM_FIELD_MAP = {
+    booking_requests: { date: 'preferred_date', time: 'time_slot' }
+  };
 
   function initSmartForms() {
     document.querySelectorAll('form[data-smart-form]').forEach(function (form) {
-      var bucket = form.getAttribute('data-smart-form');
+      var table = form.getAttribute('data-smart-form');
       var successEl = form.parentElement.querySelector('[data-form-success]');
+      var errorEl = form.parentElement.querySelector('[data-form-error]');
       var mailLink = form.parentElement.querySelector('[data-mail-fallback]');
+      var submitBtn = form.querySelector('button[type="submit"]');
 
       form.addEventListener('submit', function (e) {
         e.preventDefault();
@@ -183,12 +179,18 @@
           form.reportValidity();
           return;
         }
-        var data = serializeForm(form);
-        storeSubmission(bucket, data);
+        var raw = serializeForm(form);
+        var map = FORM_FIELD_MAP[table] || {};
+        var payload = {};
+        Object.keys(raw).forEach(function (k) {
+          var col = map[k] || k;
+          var v = raw[k];
+          payload[col] = v === '' ? null : v;
+        });
 
         if (mailLink) {
-          var lines = Object.keys(data).map(function (k) {
-            var v = data[k];
+          var lines = Object.keys(raw).map(function (k) {
+            var v = raw[k];
             return k + ': ' + (Array.isArray(v) ? v.join(', ') : v);
           });
           var subject = encodeURIComponent('Nueva solicitud - Marbella Maintenance');
@@ -196,55 +198,30 @@
           mailLink.setAttribute('href', 'mailto:info@marbellamaintenance.com?subject=' + subject + '&body=' + body);
         }
 
-        form.style.display = 'none';
-        if (successEl) successEl.classList.add('is-visible');
+        if (errorEl) errorEl.classList.remove('is-visible');
+        if (!window.mmSupabase) {
+          if (errorEl) errorEl.classList.add('is-visible');
+          return;
+        }
+
+        if (submitBtn) submitBtn.disabled = true;
+        window.mmSupabase.from(table).insert([payload]).then(function (res) {
+          if (submitBtn) submitBtn.disabled = false;
+          if (res.error) {
+            console.error('[mm] ' + table + ' insert failed', res.error);
+            if (errorEl) errorEl.classList.add('is-visible');
+            return;
+          }
+          form.style.display = 'none';
+          if (successEl) successEl.classList.add('is-visible');
+        });
       });
     });
   }
 
   /* ---------------------------------------------------------------------
-     Client area: localStorage-backed auth demo + maintenance dashboard
+     Client area: real Supabase auth + maintenance dashboard
   --------------------------------------------------------------------- */
-  var DEMO_SERVICES = [
-    { es: 'Mantenimiento de piscina', en: 'Pool maintenance' },
-    { es: 'Jardineria', en: 'Garden care' },
-    { es: 'Revision de comunidad', en: 'Community check-up' },
-    { es: 'Reforma - pintura interior', en: 'Renovation - interior paint' },
-    { es: 'Chequeo de climatizacion', en: 'HVAC check' }
-  ];
-
-  function seedRecords() {
-    var today = new Date();
-    function addDays(n) {
-      var d = new Date(today);
-      d.setDate(d.getDate() + n);
-      return d.toISOString();
-    }
-    return [
-      { date: addDays(-18), service: DEMO_SERVICES[0], status: 'ok', tech: 'Javier R.', note: { es: 'Limpieza de filtros y control de PH completado.', en: 'Filter cleaning and pH check completed.' } },
-      { date: addDays(-6), service: DEMO_SERVICES[1], status: 'ok', tech: 'Equipo verde', note: { es: 'Poda e inspeccion de riego completada.', en: 'Pruning and irrigation check completed.' } },
-      { date: addDays(4), service: DEMO_SERVICES[2], status: 'progress', tech: 'Ana M.', note: { es: 'Inspeccion de zonas comunes en curso.', en: 'Common-area inspection in progress.' } },
-      { date: addDays(12), service: DEMO_SERVICES[3], status: 'pending', tech: 'Por asignar', note: { es: 'Presupuesto aprobado, a la espera de materiales.', en: 'Quote approved, waiting on materials.' } },
-      { date: addDays(21), service: DEMO_SERVICES[4], status: 'pending', tech: 'Por asignar', note: { es: 'Revision estacional programada.', en: 'Seasonal check-up scheduled.' } }
-    ];
-  }
-
-  function getUsers() {
-    try { return JSON.parse(localStorage.getItem('mm_users') || '{}'); } catch (e) { return {}; }
-  }
-  function saveUsers(users) {
-    try { localStorage.setItem('mm_users', JSON.stringify(users)); } catch (e) {}
-  }
-  function getSession() {
-    try { return localStorage.getItem('mm_session'); } catch (e) { return null; }
-  }
-  function setSession(email) {
-    try {
-      if (email) localStorage.setItem('mm_session', email);
-      else localStorage.removeItem('mm_session');
-    } catch (e) {}
-  }
-
   function formatDate(iso, lang) {
     var d = new Date(iso);
     var months_es = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
@@ -262,12 +239,25 @@
     return map[status][lang];
   }
 
+  function translateAuthError(message, lang) {
+    var known = {
+      'Invalid login credentials': { es: 'Email o contraseña incorrectos.', en: 'Incorrect email or password.' },
+      'User already registered': { es: 'Ya existe una cuenta con este email. Prueba a iniciar sesión.', en: 'An account with this email already exists. Try logging in.' },
+      'Password should be at least 6 characters': { es: 'La contraseña debe tener al menos 6 caracteres.', en: 'Password should be at least 6 characters.' },
+      'Email not confirmed': { es: 'Confirma tu email antes de iniciar sesión (revisa tu bandeja de entrada).', en: 'Please confirm your email before logging in (check your inbox).' }
+    };
+    return (known[message] && known[message][lang]) || message;
+  }
+
   function initClientArea() {
     var root = document.querySelector('[data-client-area]');
     if (!root) return;
+    var client = window.mmSupabase;
+    if (!client) { console.error('[mm] Supabase not available'); return; }
 
     var authWrap = root.querySelector('.auth-wrap');
     var dash = root.querySelector('.dash');
+    var pending = root.querySelector('[data-register-pending]');
     var tabLogin = root.querySelector('[data-tab="login"]');
     var tabRegister = root.querySelector('[data-tab="register"]');
     var panelLogin = root.querySelector('[data-panel="login"]');
@@ -283,6 +273,8 @@
     var msgList = root.querySelector('[data-msg-list]');
     var msgForm = root.querySelector('#message-form');
 
+    var current = { profile: null, email: null, records: [], messages: [] };
+
     function switchTab(which) {
       tabLogin.classList.toggle('active', which === 'login');
       tabRegister.classList.toggle('active', which === 'register');
@@ -296,139 +288,178 @@
 
     function lang() { return document.documentElement.classList.contains('lang-en') ? 'en' : 'es'; }
 
-    function renderRecords(user) {
+    function renderRecords() {
       if (!recordList) return;
-      if (recordList.children.length > 0 && recordList.dataset.mounted === user.email) return; // idempotent
-      recordList.innerHTML = '';
-      recordList.dataset.mounted = user.email;
       var L = lang();
-      user.records.slice().sort(function (a, b) { return new Date(a.date) - new Date(b.date); }).forEach(function (r) {
-        var d = formatDate(r.date, L);
-        var div = document.createElement('div');
-        div.className = 'record';
-        div.innerHTML =
+      if (!current.records.length) {
+        recordList.innerHTML =
+          '<p class="msg-empty"><span class="i18n-es">Todavía no hay mantenimientos registrados. En cuanto el equipo registre tu primera visita, aparecerá aquí.</span>' +
+          '<span class="i18n-en">No maintenance visits logged yet. As soon as the team records your first visit, it will show up here.</span></p>';
+        return;
+      }
+      recordList.innerHTML = current.records.map(function (r) {
+        var d = formatDate(r.visit_date, L);
+        var service = L === 'en' ? r.service_en : r.service_es;
+        var note = L === 'en' ? r.note_en : r.note_es;
+        return '<div class="record">' +
           '<div class="date"><strong>' + d.day + '</strong><span>' + d.month + '</span></div>' +
-          '<div><h4>' + r.service[L] + '</h4><p>' + r.note[L] + ' &middot; ' + (L === 'en' ? 'Technician' : 'Tecnico') + ': ' + r.tech + '</p></div>' +
-          '<span class="badge ' + r.status + '">' + badgeLabel(r.status, L) + '</span>';
-        recordList.appendChild(div);
-      });
+          '<div><h4>' + service + '</h4><p>' + (note || '') + (r.technician ? ' &middot; ' + (L === 'en' ? 'Technician' : 'Técnico') + ': ' + r.technician : '') + '</p></div>' +
+          '<span class="badge ' + r.status + '">' + badgeLabel(r.status, L) + '</span>' +
+          '</div>';
+      }).join('');
     }
 
-    function renderProfile(user) {
+    function renderProfile() {
       if (!profileGrid) return;
       var L = lang();
+      var p = current.profile || {};
       var rows = [
-        [{ es: 'Titular', en: 'Account holder' }, user.name],
-        [{ es: 'Email', en: 'Email' }, user.email],
-        [{ es: 'Propiedad', en: 'Property' }, user.address || (L === 'en' ? 'Not specified' : 'No especificada')],
-        [{ es: 'Cliente desde', en: 'Client since' }, new Date(user.createdAt).toLocaleDateString(L === 'en' ? 'en-GB' : 'es-ES')]
+        [{ es: 'Titular', en: 'Account holder' }, p.name || '—'],
+        [{ es: 'Email', en: 'Email' }, current.email],
+        [{ es: 'Propiedad', en: 'Property' }, p.address || (L === 'en' ? 'Not specified' : 'No especificada')],
+        [{ es: 'Cliente desde', en: 'Client since' }, p.created_at ? new Date(p.created_at).toLocaleDateString(L === 'en' ? 'en-GB' : 'es-ES') : '—']
       ];
       profileGrid.innerHTML = rows.map(function (r) {
         return '<div class="profile-item"><span>' + r[0][L] + '</span><strong>' + r[1] + '</strong></div>';
       }).join('');
     }
 
-    function renderMessages(user) {
+    function renderMessages() {
       if (!msgList) return;
-      msgList.innerHTML = (user.messages || []).slice().reverse().map(function (m) {
-        return '<div class="msg-item">' + m.text + '<time>' + new Date(m.at).toLocaleString(lang() === 'en' ? 'en-GB' : 'es-ES') + '</time></div>';
+      msgList.innerHTML = current.messages.map(function (m) {
+        return '<div class="msg-item">' + m.body + '<time>' + new Date(m.created_at).toLocaleString(lang() === 'en' ? 'en-GB' : 'es-ES') + '</time></div>';
       }).join('') || '<p class="msg-empty i18n-es">Aun no has enviado mensajes.</p><p class="msg-empty i18n-en">You have not sent any messages yet.</p>';
     }
 
-    function showDashboard(user) {
+    function renderAll() {
+      if (welcomeName) welcomeName.textContent = (current.profile && current.profile.name) || current.email;
+      renderRecords();
+      renderProfile();
+      renderMessages();
+    }
+
+    function showDashboard() {
+      if (pending) pending.classList.remove('is-visible');
       authWrap.style.display = 'none';
       dash.classList.add('is-visible');
-      if (welcomeName) welcomeName.textContent = user.name;
-      renderRecords(user);
-      renderProfile(user);
-      renderMessages(user);
+      renderAll();
     }
 
     function showAuth() {
+      if (pending) pending.classList.remove('is-visible');
       authWrap.style.display = '';
       dash.classList.remove('is-visible');
     }
 
-    function boot() {
-      var email = getSession();
-      var users = getUsers();
-      if (email && users[email]) {
-        showDashboard(users[email]);
+    function showPendingConfirmation() {
+      authWrap.style.display = 'none';
+      dash.classList.remove('is-visible');
+      if (pending) pending.classList.add('is-visible');
+    }
+
+    async function loadDashboardData(user) {
+      current.email = user.email;
+      var profileRes = await client.from('profiles').select('*').eq('id', user.id).single();
+      current.profile = profileRes.data || null;
+
+      var recordsRes = await client.from('maintenance_records').select('*').eq('user_id', user.id).order('visit_date', { ascending: true });
+      current.records = recordsRes.data || [];
+
+      var msgRes = await client.from('messages').select('*').eq('user_id', user.id).order('created_at', { ascending: false });
+      current.messages = msgRes.data || [];
+
+      showDashboard();
+    }
+
+    async function boot() {
+      var sessionRes = await client.auth.getSession();
+      var session = sessionRes.data && sessionRes.data.session;
+      if (session && session.user) {
+        await loadDashboardData(session.user);
       } else {
         showAuth();
       }
     }
 
     if (registerForm) {
-      registerForm.addEventListener('submit', function (e) {
+      registerForm.addEventListener('submit', async function (e) {
         e.preventDefault();
         registerError.classList.remove('is-visible');
         var data = serializeForm(registerForm);
-        var users = getUsers();
         var email = (data.email || '').trim().toLowerCase();
         if (!email || !data.password || !data.name) return;
-        if (users[email]) {
-          registerError.textContent = lang() === 'en'
-            ? 'An account with this email already exists. Try logging in.'
-            : 'Ya existe una cuenta con este email. Prueba a iniciar sesion.';
+
+        var submitBtn = registerForm.querySelector('button[type="submit"]');
+        if (submitBtn) submitBtn.disabled = true;
+
+        var res = await client.auth.signUp({
+          email: email,
+          password: data.password,
+          options: { data: { name: data.name, address: data.address || '' } }
+        });
+
+        if (submitBtn) submitBtn.disabled = false;
+
+        if (res.error) {
+          registerError.textContent = translateAuthError(res.error.message, lang());
           registerError.classList.add('is-visible');
           return;
         }
-        users[email] = {
-          name: data.name,
-          email: email,
-          password: data.password,
-          address: data.address || '',
-          createdAt: new Date().toISOString(),
-          records: seedRecords(),
-          messages: []
-        };
-        saveUsers(users);
-        setSession(email);
-        showDashboard(users[email]);
+
+        if (res.data.session && res.data.user) {
+          await loadDashboardData(res.data.user);
+        } else {
+          showPendingConfirmation();
+        }
       });
     }
 
     if (loginForm) {
-      loginForm.addEventListener('submit', function (e) {
+      loginForm.addEventListener('submit', async function (e) {
         e.preventDefault();
         loginError.classList.remove('is-visible');
         var data = serializeForm(loginForm);
-        var users = getUsers();
         var email = (data.email || '').trim().toLowerCase();
-        var user = users[email];
-        if (!user || user.password !== data.password) {
-          loginError.textContent = lang() === 'en'
-            ? 'Incorrect email or password.'
-            : 'Email o contrasena incorrectos.';
+
+        var submitBtn = loginForm.querySelector('button[type="submit"]');
+        if (submitBtn) submitBtn.disabled = true;
+
+        var res = await client.auth.signInWithPassword({ email: email, password: data.password });
+
+        if (submitBtn) submitBtn.disabled = false;
+
+        if (res.error) {
+          loginError.textContent = translateAuthError(res.error.message, lang());
           loginError.classList.add('is-visible');
           return;
         }
-        setSession(email);
-        showDashboard(user);
+        await loadDashboardData(res.data.user);
       });
     }
 
     if (logoutBtn) {
-      logoutBtn.addEventListener('click', function () {
-        setSession(null);
+      logoutBtn.addEventListener('click', async function () {
+        await client.auth.signOut();
+        current = { profile: null, email: null, records: [], messages: [] };
         showAuth();
       });
     }
 
     if (msgForm) {
-      msgForm.addEventListener('submit', function (e) {
+      msgForm.addEventListener('submit', async function (e) {
         e.preventDefault();
-        var email = getSession();
-        var users = getUsers();
-        if (!email || !users[email]) return;
+        var sessionRes = await client.auth.getSession();
+        var user = sessionRes.data && sessionRes.data.session && sessionRes.data.session.user;
+        if (!user) return;
         var data = serializeForm(msgForm);
         if (!data.text) return;
-        users[email].messages = users[email].messages || [];
-        users[email].messages.push({ text: data.text, at: new Date().toISOString() });
-        saveUsers(users);
+
+        var res = await client.from('messages').insert([{ user_id: user.id, body: data.text }]).select();
+        if (res.error) { console.error('[mm] message insert failed', res.error); return; }
+
+        current.messages.unshift(res.data[0]);
         msgForm.reset();
-        renderMessages(users[email]);
+        renderMessages();
         var ack = msgForm.parentElement.querySelector('[data-msg-ack]');
         if (ack) {
           ack.classList.add('is-visible');
@@ -450,17 +481,10 @@
 
     boot();
 
-    // re-render copy inside dashboard when language changes
+    // re-render dashboard copy when language changes
     document.querySelectorAll('[data-lang-toggle]').forEach(function (b) {
       b.addEventListener('click', function () {
-        var email = getSession();
-        var users = getUsers();
-        if (email && users[email]) {
-          recordList.dataset.mounted = '';
-          renderRecords(users[email]);
-          renderProfile(users[email]);
-          renderMessages(users[email]);
-        }
+        if (current.email) renderAll();
       });
     });
   }
