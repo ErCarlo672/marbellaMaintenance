@@ -29,6 +29,22 @@
         if (!opt.dataset.es) opt.dataset.es = opt.textContent;
         opt.textContent = lang === 'en' ? opt.dataset.en : opt.dataset.es;
       });
+
+      // attributes don't respond to the CSS language toggle either: tab title,
+      // image alt text and aria-labels need to be swapped directly
+      var titleEl = document.querySelector('title');
+      if (titleEl && titleEl.dataset.en) {
+        if (!titleEl.dataset.es) titleEl.dataset.es = titleEl.textContent;
+        titleEl.textContent = lang === 'en' ? titleEl.dataset.en : titleEl.dataset.es;
+      }
+      document.querySelectorAll('[data-en-alt]').forEach(function (el) {
+        if (!el.dataset.esAlt) el.dataset.esAlt = el.getAttribute('alt') || '';
+        el.setAttribute('alt', lang === 'en' ? el.dataset.enAlt : el.dataset.esAlt);
+      });
+      document.querySelectorAll('[data-en-aria]').forEach(function (el) {
+        if (!el.dataset.esAria) el.dataset.esAria = el.getAttribute('aria-label') || '';
+        el.setAttribute('aria-label', lang === 'en' ? el.dataset.enAria : el.dataset.esAria);
+      });
     }
 
     var stored = null;
