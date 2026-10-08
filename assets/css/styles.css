@@ -91,9 +91,12 @@ html.lang-en .i18n-es{display:none}
 }
 .site-header .container{display:flex;align-items:center;justify-content:space-between;gap:24px}
 .site-header.is-scrolled{background:rgba(20,17,15,.92);backdrop-filter:blur(10px);padding:12px 0;box-shadow:0 10px 30px -15px rgba(0,0,0,.5)}
-.brand{display:flex;flex-direction:column;line-height:1.1;color:var(--text-light)}
-.brand strong{font-family:'Fraunces',serif;font-size:1.28rem;letter-spacing:.01em}
-.brand span{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-light);margin-top:3px}
+.brand{display:flex;align-items:center;gap:12px;line-height:1.1;color:var(--text-light)}
+.logo-mark{flex:none;width:34px;height:20px;color:var(--gold-light);transition:transform .4s var(--ease)}
+.brand:hover .logo-mark{transform:translateY(-1px)}
+.wordmark{font-family:'Pinyon Script',cursive;font-size:1.78rem;line-height:1;color:var(--gold-light);white-space:nowrap}
+.footer-wordmark{font-family:'Pinyon Script',cursive;font-size:2.6rem;line-height:1;color:var(--gold-light)}
+.footer-stars{color:var(--gold-light);letter-spacing:4px;font-size:.85rem;margin-top:10px}
 .main-nav{display:flex;align-items:center;gap:6px}
 .main-nav a{
   color:var(--text-light-muted);font-size:.86rem;font-weight:500;padding:10px 14px;border-radius:999px;
@@ -298,8 +301,9 @@ section{padding:120px 0}
 /* ===================== FOOTER ===================== */
 .site-footer{background:var(--ink);color:var(--text-light-muted);padding:90px 0 30px}
 .footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:50px;padding-bottom:60px;border-bottom:1px solid var(--line-dark)}
-.footer-brand strong{font-family:'Fraunces',serif;color:#fff;font-size:1.3rem}
-.footer-brand p{margin-top:18px;max-width:34ch;font-size:.9rem}
+.footer-brand .logo-row{display:flex;align-items:center;gap:16px}
+.footer-brand .logo-mark{width:54px;height:31px}
+.footer-brand p{margin-top:20px;max-width:34ch;font-size:.9rem}
 .footer-col h4{color:#fff;font-family:'Inter',sans-serif;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:20px;font-weight:700}
 .footer-col ul{display:flex;flex-direction:column;gap:12px}
 .footer-col a{font-size:.92rem;transition:color .3s}
