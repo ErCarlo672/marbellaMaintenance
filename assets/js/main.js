@@ -165,6 +165,17 @@
     booking_requests: { date: 'preferred_date', time: 'time_slot' }
   };
 
+  function setBtnLoading(btn) {
+    var original = btn.innerHTML;
+    var lang = document.documentElement.classList.contains('lang-en') ? 'en' : 'es';
+    btn.disabled = true;
+    btn.innerHTML = '<span class="btn-spinner" aria-hidden="true"></span>' + (lang === 'en' ? 'Sending…' : 'Enviando…');
+    return function restore() {
+      btn.disabled = false;
+      btn.innerHTML = original;
+    };
+  }
+
   function initSmartForms() {
     document.querySelectorAll('form[data-smart-form]').forEach(function (form) {
       var table = form.getAttribute('data-smart-form');
@@ -204,11 +215,11 @@
           return;
         }
 
-        if (submitBtn) submitBtn.disabled = true;
+        var restoreBtn = submitBtn ? setBtnLoading(submitBtn) : null;
         window.mmSupabase.from(table).insert([payload]).then(function (res) {
-          if (submitBtn) submitBtn.disabled = false;
           if (res.error) {
             console.error('[mm] ' + table + ' insert failed', res.error);
+            if (restoreBtn) restoreBtn();
             if (errorEl) errorEl.classList.add('is-visible');
             return;
           }
@@ -390,7 +401,7 @@
         if (!email || !data.password || !data.name) return;
 
         var submitBtn = registerForm.querySelector('button[type="submit"]');
-        if (submitBtn) submitBtn.disabled = true;
+        var restore = submitBtn ? setBtnLoading(submitBtn) : null;
 
         var res = await client.auth.signUp({
           email: email,
@@ -398,7 +409,7 @@
           options: { data: { name: data.name, address: data.address || '' } }
         });
 
-        if (submitBtn) submitBtn.disabled = false;
+        if (restore) restore();
 
         if (res.error) {
           registerError.textContent = translateAuthError(res.error.message, lang());
@@ -422,11 +433,11 @@
         var email = (data.email || '').trim().toLowerCase();
 
         var submitBtn = loginForm.querySelector('button[type="submit"]');
-        if (submitBtn) submitBtn.disabled = true;
+        var restore = submitBtn ? setBtnLoading(submitBtn) : null;
 
         var res = await client.auth.signInWithPassword({ email: email, password: data.password });
 
-        if (submitBtn) submitBtn.disabled = false;
+        if (restore) restore();
 
         if (res.error) {
           loginError.textContent = translateAuthError(res.error.message, lang());
@@ -454,7 +465,11 @@
         var data = serializeForm(msgForm);
         if (!data.text) return;
 
+        var submitBtn = msgForm.querySelector('button[type="submit"]');
+        var restore = submitBtn ? setBtnLoading(submitBtn) : null;
+
         var res = await client.from('messages').insert([{ user_id: user.id, body: data.text }]).select();
+        if (restore) restore();
         if (res.error) { console.error('[mm] message insert failed', res.error); return; }
 
         current.messages.unshift(res.data[0]);
