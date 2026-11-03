@@ -21,7 +21,7 @@
       try { localStorage.setItem('mm_lang', lang); } catch (e) {}
       btns.forEach(function (b) {
         b.textContent = lang === 'en' ? 'ES' : 'EN';
-        b.setAttribute('aria-label', lang === 'en' ? 'Cambiar a espanol' : 'Switch to English');
+        b.setAttribute('aria-label', lang === 'en' ? 'Cambiar a español' : 'Switch to English');
       });
 
       // <option> elements don't respect CSS visibility, so translate them directly

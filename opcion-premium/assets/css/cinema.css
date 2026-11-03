@@ -255,3 +255,33 @@ html.lang-en .stat-label.i18n-en{display:block}
   .wordmark{font-size:1.12rem}
 }
 .zig-num{color:var(--bronze)}
+
+/* sello de marca de fondo en los formularios */
+.form-seal{position:relative;overflow:hidden;isolation:isolate}
+.form-seal::before{
+  content:'';position:absolute;z-index:-1;left:50%;top:50%;transform:translate(-50%,-50%);width:86%;aspect-ratio:16/9;pointer-events:none;opacity:.1;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90' fill='none' stroke='%2380602a' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 70H50' stroke-opacity='.9'/%3E%3Cpath d='M110 70H154' stroke-opacity='.9'/%3E%3Cpath d='M38 70L72 16L106 70' stroke-opacity='.55'/%3E%3Cpath d='M50 70L82 26L114 70'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+.form-seal .field input,.form-seal .field select,.form-seal .field textarea,.form-seal .checkbox-item{background-color:rgba(255,255,255,.5)}
+.form-seal .field input:focus,.form-seal .field select:focus,.form-seal .field textarea:focus{background-color:#fff}
+@media (max-width:700px){.form-seal::before{width:92%;opacity:.08}}
+.form-seal-bottom::before{top:auto;bottom:20px;transform:translateX(-50%);width:min(320px,62%)}
+@media (max-width:980px){.form-seal-bottom{padding-bottom:180px}}
+
+/* pulido tras el chequeo ------------------------------------------------------ */
+html{scroll-padding-top:88px}
+.form-grid > *{min-width:0}
+.field input,.field select,.field textarea{width:100%;min-width:0}
+.timeline-step .num{color:var(--bronze)}
+.why-card{border-radius:4px}
+.why-card h3{margin-bottom:8px}
+.section-sand .split-list .ico{background:var(--paper)}
+.btn-dark{background:var(--gold-light);color:#21170a}
+.btn-dark:hover{background:var(--gold);color:#21170a}
+.contact-chip > div{min-width:0}
+.contact-chip strong{overflow-wrap:anywhere}
+.footer-stars{color:#654a1e}
+.footer-col ul{gap:4px}
+.footer-col a{display:inline-block;padding:6px 0}
+.made-by{display:inline-block;padding:8px 0}
+.text-link{padding-top:10px}
