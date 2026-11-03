@@ -61,7 +61,11 @@ h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;font-weight:400;letter-spacing:
 .site-header.is-scrolled .lang-toggle{color:var(--ink);border-color:var(--line-light)}
 .site-header.is-scrolled .lang-toggle:hover{background:var(--travertine)}
 .site-header.is-scrolled .menu-toggle span{background:var(--ink)}
-@media (max-width:1180px){.site-header .main-nav a{padding:10px 9px;letter-spacing:.08em}}
+@media (max-width:1240px){
+  .main-nav{display:none}
+  .nav-cta .btn-gold{display:none}
+  .menu-toggle{display:flex}
+}
 
 .mobile-nav{background:var(--ivory)}
 .mobile-nav a{color:var(--ink);font-family:'Fraunces',serif;border-bottom-color:var(--line-light)}
