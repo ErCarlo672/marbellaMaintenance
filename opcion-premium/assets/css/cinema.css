@@ -271,7 +271,7 @@ html.lang-en .stat-label.i18n-en{display:block}
 /* pulido tras el chequeo ------------------------------------------------------ */
 html{scroll-padding-top:88px}
 .form-grid > *{min-width:0}
-.field input,.field select,.field textarea{width:100%;min-width:0}
+.field input:not([type=checkbox]):not([type=radio]),.field select,.field textarea{width:100%;min-width:0}
 .timeline-step .num{color:var(--bronze)}
 .why-card{border-radius:4px}
 .why-card h3{margin-bottom:8px}
